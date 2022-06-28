@@ -21,14 +21,24 @@ namespace CurrencyCalculator.Controllers
         {            
             _logger = logger;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
-            GetDataFromApi();        
-            return View();
+            ViewBag.cur1 = "PLN";
+            ViewBag.cur2 = "PLN";
+            Logic l = new Logic();
+            l.GetDataFromApi();       
+            return View(l);
         }
-
-    
+        [HttpPost]
+        public IActionResult Index(string currency1,string currency2)
+        {
+            ViewBag.cur1 = currency1;
+            ViewBag.cur2 = currency2;
+            Logic l = new Logic();
+            l.GetDataFromApi();
+            return View(l);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -36,13 +46,6 @@ namespace CurrencyCalculator.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-      
-        public ActionResult  GetDataFromApi()
-        {           
-            var webClient = new WebClient();
-            var json = webClient.DownloadString(@"http://api.nbp.pl/api/exchangerates/tables/a/?format=json");
-            Models.Root[] objJson = JsonConvert.DeserializeObject<Models.Root[]>(json); 
-            return View(objJson);  
-        }
+
     }
 }

@@ -1,45 +1,83 @@
-﻿@model CurrencyCalculator.Models.Root[]
+﻿@model CurrencyCalculator.Models.Logic
 @{
     ViewBag.Title = "GetJsonDataModel";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<form name="form_home" id="form_home" method="post" action="@Url.Action("Index","Home")"  >
+<div class="container">
+    <div class="row">
+        <div class="col-6">
 
-<div class="col-md-4">
-    <div class="input-group">
-        <select class="custom-select" id="TIDropDown" onchange="SelectCurrency1()">
-            <option>Choose...</option>
-            <option>Option 1</option>
-            <option>Option 2</option>
-        </select>
+            <div class="row" >
+                <div class="col-6">
+                    <select class="custom-select" id="currency1" name="currency1" runat="server" onchange="SelectCurrency1">
+                        @foreach (var x in Model.objJson)
+                        { 
+                            @foreach (var y in x.rates)
+                            {
+                            <option>@ViewBag.cur1</option>
+                            <option>@y.code</option>
+                             }
+                         }
+                    </select>
+                </div>
+                <div class="col-6">
+                <select class="custom-select" id="currency2" name="currency2" onchange="SelectCurrency2()">
+                    @foreach (var x in Model.objJson)
+                    {
+                        @foreach (var y in x.rates)
+                        {
+                        <option>@ViewBag.cur2</option>
+                        <option>@y.code</option>
+                            }
+                        }
+                </select>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <input class="custom-control-inline" />
+                </div>
+                <div class="col-6">
+                    <input class="custom-control-inline"/>
+                </div>                
+            </div>
+            <div class="row">
+                <button class="btn" id="submit_button" name="submit_button" type="submit">submit</button>
+            </div>
 
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">
-                <span class="glyphicon glyphicon-align-left"></span>
-            </button>
+
+
+        </div>
+        <div class="col-6">
+
+            <table>
+                <tr>
+                    <th>currency</th>
+                    <th>code</th>
+                    <th>mid</th>
+
+                </tr>
+
+
+                @foreach (var x in Model.objJson)
+                {
+                    @foreach (var y in x.rates)
+                    {
+                    <tr>
+                        <td>@y.currency</td>
+                        <th>@y.code</th>
+                        <th>@y.mid</th>
+                    </tr>
+                        }
+                    }
+
+
+
+            </table>
+
         </div>
     </div>
 </div>
-    <h2>GetJsonDataModel</h2>
-    @{
-        <table>
-            <tr>
-                <th>currency</th>
-                <th>code</th>
-                <th>mid</th>
-
-            </tr>
-
-
-            @foreach (var x in Model[0].rates)
-            {
-                <tr>
-                    <th>@x.currency</th>
-                    <th>@x.code</th>
-                    <th>@x.mid</th>
-                </tr>
-            }
-
-
-
-        </table>
-    }
+</form>

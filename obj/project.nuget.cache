@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "SFGfJw/XfWkWDVUk3BzhZkkx/LD1hl3obB9orIbL+crticbKG8broAnYZaWWswPHpHA4xRX4lhR7M884vCb8EA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\G\\source\\repos\\CurrencyCalculator\\CurrencyCalculator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\G\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,45 @@
+﻿@model CurrencyCalculator.Models.Root[]
+@{
+    ViewBag.Title = "GetJsonDataModel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-4">
+    <div class="input-group">
+        <select class="custom-select" id="TIDropDown" onchange="SelectCurrency1()">
+            <option>Choose...</option>
+            <option>Option 1</option>
+            <option>Option 2</option>
+        </select>
+
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">
+                <span class="glyphicon glyphicon-align-left"></span>
+            </button>
+        </div>
+    </div>
+</div>
+    <h2>GetJsonDataModel</h2>
+    @{
+        <table>
+            <tr>
+                <th>currency</th>
+                <th>code</th>
+                <th>mid</th>
+
+            </tr>
+
+
+            @foreach (var x in Model[0].rates)
+            {
+                <tr>
+                    <th>@x.currency</th>
+                    <th>@x.code</th>
+                    <th>@x.mid</th>
+                </tr>
+            }
+
+
+
+        </table>
+    }

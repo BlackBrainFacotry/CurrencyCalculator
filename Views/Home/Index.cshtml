@@ -11,40 +11,42 @@
             <div class="row" >
                 <div class="col-6">
                     <select class="custom-select" id="currency1" name="currency1" runat="server" onchange="SelectCurrency1">
+                        <option>@ViewBag.cur1</option>
                         @foreach (var x in Model.objJson)
-                        { 
+                        {
                             @foreach (var y in x.rates)
                             {
-                            <option>@ViewBag.cur1</option>
-                            <option>@y.code</option>
-                             }
-                         }
+
+                                <option>@y.code</option>
+                            }
+                        }
                     </select>
                 </div>
                 <div class="col-6">
-                <select class="custom-select" id="currency2" name="currency2" onchange="SelectCurrency2()">
-                    @foreach (var x in Model.objJson)
-                    {
-                        @foreach (var y in x.rates)
-                        {
+                    <select class="custom-select" id="currency2" name="currency2" onchange="SelectCurrency2()">
                         <option>@ViewBag.cur2</option>
-                        <option>@y.code</option>
+                        @foreach (var x in Model.objJson)
+                        {
+                            @foreach (var y in x.rates)
+                            {
+
+                                <option>@y.code</option>
                             }
                         }
-                </select>
+                    </select>
                 </div>
                 
             </div>
             <div class="row">
                 <div class="col-6">
-                    <input class="custom-control-inline" />
+                    <input class="custom-control-inline" id="currency_value1" name="currency_value1" />@ViewBag.curr_value1
                 </div>
                 <div class="col-6">
-                    <input class="custom-control-inline"/>
+                    <input class="custom-control-inline" id="currency_value2" name="currency_value2" readonly/>@ViewBag.curr_value2
                 </div>                
             </div>
             <div class="row">
-                <button class="btn" id="submit_button" name="submit_button" type="submit">submit</button>
+                <button class="btn-outline-dark" id="submit_button" name="submit_button" type="submit">submit</button>
             </div>
 
 
@@ -67,8 +69,8 @@
                     {
                     <tr>
                         <td>@y.currency</td>
-                        <th>@y.code</th>
-                        <th>@y.mid</th>
+                        <td>@y.code</td>
+                        <td>@y.mid</td>
                     </tr>
                         }
                     }

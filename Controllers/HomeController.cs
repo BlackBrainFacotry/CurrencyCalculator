@@ -16,7 +16,8 @@ namespace CurrencyCalculator.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         protected Root[] data;
-       
+        public static Logic l = new Logic();
+
         public HomeController(ILogger<HomeController> logger)
         {            
             _logger = logger;
@@ -26,17 +27,21 @@ namespace CurrencyCalculator.Controllers
         {
             ViewBag.cur1 = "PLN";
             ViewBag.cur2 = "PLN";
-            Logic l = new Logic();
+            ViewBag.curr_value1 = 1;
+            ViewBag.cur_value2 = 1;
+            //Logic l = new Logic();
             l.GetDataFromApi();       
             return View(l);
         }
         [HttpPost]
-        public IActionResult Index(string currency1,string currency2)
+        public IActionResult Index(string currency1,string currency2,float currency_value1)
         {
             ViewBag.cur1 = currency1;
             ViewBag.cur2 = currency2;
-            Logic l = new Logic();
-            l.GetDataFromApi();
+            ViewBag.curr_value1 = currency_value1;
+            //Logic l = new Logic();
+           // l.GetDataFromApi();
+            ViewBag.curr_value2 = l.ConvertCurrency(currency1, currency2, currency_value1);
             return View(l);
         }
 

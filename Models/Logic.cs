@@ -136,11 +136,11 @@ namespace CurrencyCalculator.Models
                 }   
             }
         }
-        public float ConvertCurrency(string curr1, string curr2, float curr_value1)
+        public float ConvertCurrency(string curr1, string curr2, string curr_value1)
         {
             Models.Rate curr_obj1=null;
             Models.Rate curr_obj2=null;
-         
+            if(curr_value1 == null) { curr_value1 = "0"; }
             foreach (var x in objJson)
             {
                 foreach( var y in x.rates)
@@ -158,7 +158,7 @@ namespace CurrencyCalculator.Models
             }
             if (curr_obj1 != null && curr_obj2 != null)
             {
-                float mid_value1 = (float)curr_obj1.mid * curr_value1 / (float)curr_obj2.mid;
+                float mid_value1 = (float)curr_obj1.mid * float.Parse(curr_value1.ToString().Replace(".",",")) / (float)curr_obj2.mid;
                 return mid_value1;
 
             }

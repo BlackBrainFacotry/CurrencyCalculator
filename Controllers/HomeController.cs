@@ -33,12 +33,13 @@ namespace CurrencyCalculator.Controllers
             return View(l);
         }
         [HttpPost]
-        public IActionResult Index(string currency1,string currency2,float currency_value1)
+        public IActionResult Index(string currency1,string currency2,string currency_value1)
         {
             ViewBag.cur1 = currency1;
             ViewBag.cur2 = currency2;
-            ViewBag.curr_value1 = currency_value1;          
+            ViewBag.curr_value1 = currency_value1;            
             ViewBag.curr_value2 = l.ConvertCurrency(currency1, currency2, currency_value1);
+            if (currency_value1 == null) ViewBag.curr_value1 = ViewBag.curr_value2;
             return View(l);
         }
 

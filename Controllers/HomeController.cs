@@ -28,9 +28,8 @@ namespace CurrencyCalculator.Controllers
             ViewBag.cur1 = "PLN";
             ViewBag.cur2 = "PLN";
             ViewBag.curr_value1 = 1;
-            ViewBag.cur_value2 = 1;
-            //Logic l = new Logic();
-            l.GetDataFromApi();       
+            ViewBag.curr_value2 = 1;
+            l.GetData();
             return View(l);
         }
         [HttpPost]
@@ -38,9 +37,7 @@ namespace CurrencyCalculator.Controllers
         {
             ViewBag.cur1 = currency1;
             ViewBag.cur2 = currency2;
-            ViewBag.curr_value1 = currency_value1;
-            //Logic l = new Logic();
-           // l.GetDataFromApi();
+            ViewBag.curr_value1 = currency_value1;          
             ViewBag.curr_value2 = l.ConvertCurrency(currency1, currency2, currency_value1);
             return View(l);
         }

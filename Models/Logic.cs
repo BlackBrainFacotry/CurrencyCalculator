@@ -14,6 +14,17 @@ namespace CurrencyCalculator.Models
         {
 
         }
+        public void GetData()
+        {
+            try
+            {
+                GetDataFromApi();
+            }
+            catch
+            {
+                ReadDataFromDb();
+            }
+        }
         public void GetDataFromApi()
         {
             var webClient = new WebClient();
@@ -27,7 +38,7 @@ namespace CurrencyCalculator.Models
             objJson[0].rates.Add(ratePLN);
             RemoveDate();
             SaveData();
-            ReadDataFromDb();
+            
 
         }
         public void RemoveDate()
